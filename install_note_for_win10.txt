@@ -1,0 +1,27 @@
+Whilst Windows isn¡¯t officially supported for fastai or the lessons at this stage, it does seem to be working now so those with the patience and boldness to venture into something a little new and somewhat untested, here¡¯s instructions on getting started running on a GPU on Windows. (NB: most people using Windows on their laptops are advised to use a cloud GPU provider like Paperspace - accessing a cloud provider from Windows is well supported and tested for this course).
+
+You must have an Nvidia GPU installed, and have installed the most recent Nvidia drivers
+1.Install Anaconda (Python 3.6) using the 64-bit graphical installer353. Choose the option to install for ¡°this user only¡±
+2.Install Git for Windows
+3.Run Anaconda Prompt from your start menu, and type:
+git clone https://github.com/fastai/fastai.git
+4.Once the repo is cloned, you¡¯re ready to set up fastai:
+cd fastai
+conda env update
+5.Activate your new environment (NB: you must type this command every time you run Anaconda):
+activate fastai
+6.Install ipython widgets into jupyter:
+jupyter nbextension enable --py widgetsnbextension --sys-prefix
+7.Replace the linux symlink with a Windows one (note that this requires an admin command prompt if you don¡¯t have a fully updated version of Windows 10):
+cd courses\dl1
+del fastai
+mklink /d fastai ..\..\fastai
+cd ..\..
+
+That¡¯s it! You should be ready to now type jupyter notebook and a notebook will pop up running jupyter. Click through to courses and then dl1 and try lesson1.ipynb. The start of the notebook will show you how to check everything is working. Note that you don¡¯t need to install CUDA, Visual Studio, CuDNN, or anything else (although it¡¯s fine it you have installed some of these things).
+
+If you have any problems, please tell us exactly what your set up is (e.g. Windows and driver versions, type of GPU) and full details of what you did and what errors you saw. Remember that this is a new and unsupported option, so is only recommended if for some reason you can¡¯t use Paperspace or similar, or you¡¯re interested in helping develop and test a the cutting edge!
+
+Additional notes:
+To use the NLP libraries in lesson 4 and onwards, you¡¯ll need to install Spacy¡¯s English model. To do so, run the Anaconda prompt as admin (i.e. click start, type ¡®anaconda¡¯, type ctrl-shift-enter, or right-click anaconda and ¡®run as administrator¡¯) and type:
+python -m spacy download en
