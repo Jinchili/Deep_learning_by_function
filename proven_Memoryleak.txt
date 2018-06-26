@@ -3,3 +3,7 @@ def limit_mem():
     cfg = K.tf.ConfigProto()
     cfg.gpu_options.allow_growth = True
     K.set_session(K.tf.Session(config=cfg))
+
+
+torch.cuda.empty_cache()
+##torch.cuda.memory_allocated()
